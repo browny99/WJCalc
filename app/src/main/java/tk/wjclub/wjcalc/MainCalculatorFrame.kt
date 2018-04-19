@@ -1,5 +1,6 @@
 package tk.wjclub.wjcalc
 
+import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
@@ -11,23 +12,20 @@ import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main_calculator_frame.*
 import kotlinx.android.synthetic.main.app_bar_main_calculator_frame.*
 
-class MainCalculatorFrame : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainCalculatorFrame : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, ProgrammingCalculator.OnFragmentInteractionListener {
+
+    override fun onFragmentInteraction(uri: Uri) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_calculator_frame)
         setSupportActionBar(toolbar)
-
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
-        }
-
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
-
         nav_view.setNavigationItemSelectedListener(this)
     }
 
@@ -59,13 +57,13 @@ class MainCalculatorFrame : AppCompatActivity(), NavigationView.OnNavigationItem
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.nav_camera -> {
-                // Handle the camera action
+
             }
             R.id.nav_gallery -> {
 
             }
             R.id.nav_slideshow -> {
-
+                supportFragmentManager.beginTransaction().add(R.id.mainFrameFragment, ProgrammingCalculator()).commit();
             }
             R.id.nav_manage -> {
 
